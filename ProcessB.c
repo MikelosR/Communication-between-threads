@@ -79,12 +79,12 @@ int main(int argc, char *argv[] ) {
 	//σταμάτα την write αφού επέστρεψε η read (ήρθε #BYE#)
 	pthread_cancel(write_thread_var);
 
-	//το join είναι περιττό γιατί κάνουμε pthread_cancel στο write thread που έχει κολήσει στην getchar()
-	/*res2 = pthread_join(write_thread_var, NULL);
+	//join write thread
+	res2 = pthread_join(write_thread_var, NULL);
 	if (res2 != 0) {
 		perror("Thread join failed");
 		exit(EXIT_FAILURE);
-	}*/
+	}
 	printf("Thread (write_thread_var) with number %u complete the process B\n", (unsigned int)write_thread_var);
 
 	printf("Process B sent %d messages \n", MDW.were_sent);
